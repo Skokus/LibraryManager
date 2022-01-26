@@ -37,6 +37,9 @@ namespace LibraryManager.WebAPI
             services.AddScoped<IFilmStudioRepository, FilmStudioRepository>();
             services.AddScoped<IFilmStudioService, FilmStudioService>();
 
+            services.AddScoped<IPublishHouseRepository, PublishHouseRepository>();
+            services.AddScoped<IPublishHouseService, PublishHouseService>();
+
             services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("LibraryManagerConnectionString")));
