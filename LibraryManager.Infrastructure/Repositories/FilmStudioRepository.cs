@@ -2,6 +2,7 @@
 using LibraryManager.Core.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,29 +15,76 @@ namespace LibraryManager.Infrastructure.Repositories
         {
             _appDbContext = appDbContext;
         }
-        public Task AddSync(FilmStudio f)
+        public async Task AddSync(FilmStudio f)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _appDbContext.FilmStudio.Add(f);
+                _appDbContext.SaveChanges();
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+            }
         }
 
-        public Task<IEnumerable<FilmStudio>> BrowseAllAsync()
+        public async Task<IEnumerable<FilmStudio>> BrowseAllAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await Task.FromResult(_appDbContext.FilmStudio);
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+                return null;
+            }
         }
 
-        public Task DeleteAsync(FilmStudio f)
+        public async Task DeleteAsync(FilmStudio f)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _appDbContext.Remove(_appDbContext.FilmStudio.FirstOrDefault(x => x.Id == f.Id));
+                _appDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+            }
         }
 
-        public Task<FilmStudio> GetAsync(int id)
+        public async Task<FilmStudio> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _appDbContext.FilmStudio.FirstOrDefault(x => x.Id == id);
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+                return null;
+            }
         }
 
-        public Task UpdateAsync(FilmStudio f)
+        public async Task UpdateAsync(FilmStudio f)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var z = _appDbContext.FilmStudio.FirstOrDefault(x => x.Id == f.Id);
+
+                z.Name = f.Name;
+                z.Country = f.Country;
+                z.EstablishDay = f.EstablishDay;
+                z.Type = f.Type;
+
+                _appDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+            }
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using LibraryManager.Core.Domain;
 using LibraryManager.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,29 +16,95 @@ namespace LibraryManager.Infrastructure.Repositories
         {
             _appDbContext = appDbContext;
         }
-        public Task AddSync(Book b)
+        public async Task AddSync(Book b)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Author author = _appDbContext.Author.FirstOrDefault(x => x.Id == b.Author.Id);
+                if (author != null)
+                {
+                    b.Author = author;
+                }
+                PublishHouse publishHouse = _appDbContext.PublishHouse.FirstOrDefault(x => x.Id == b.PublishHouse.Id);
+                if (publishHouse != null)
+                {
+                    b.PublishHouse = publishHouse;
+                }
+                _appDbContext.Book.Add(b);
+                _appDbContext.SaveChanges();
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+            }
         }
 
-        public Task<IEnumerable<Book>> BrowseAllAsync()
+        public async Task<IEnumerable<Book>> BrowseAllAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await Task.FromResult(_appDbContext.Book.Include(y => y.Author).Include(y => y.PublishHouse));
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+                return null;
+            }
         }
 
-        public Task DeleteAsync(Book b)
+        public async Task DeleteAsync(Book b)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _appDbContext.Remove(_appDbContext.Book.Include(y => y.Author).Include(y => y.PublishHouse).FirstOrDefault(x => x.Id == b.Id));
+                _appDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+            }
         }
 
-        public Task<Book> GetAsync(int id)
+        public async Task<Book> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _appDbContext.Book.Include(y => y.Author).Include(y => y.PublishHouse).FirstOrDefault(x => x.Id == id);
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+                return null;
+            }
         }
 
-        public Task UpdateAsync(Book b)
+        public async Task UpdateAsync(Book b)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Author author = _appDbContext.Author.FirstOrDefault(x => x.Id == b.Author.Id);
+                if (author != null)
+                {
+                    b.Author = author;
+                }
+                PublishHouse publishHouse = _appDbContext.PublishHouse.FirstOrDefault(x => x.Id == b.PublishHouse.Id);
+                if (publishHouse != null)
+                {
+                    b.PublishHouse = publishHouse;
+                }
+                var z = _appDbContext.Book.Include(y => y.Author).Include(y => y.PublishHouse).FirstOrDefault(x => x.Id == b.Id);
+                z.Name = b.Name;
+                z.Author = b.Author;
+                z.PublishHouse = b.PublishHouse;
+                z.NumberOfPages = b.NumberOfPages;
+                z.NumberInSeries = b.NumberInSeries;
+                _appDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+            }
         }
     }
 }
