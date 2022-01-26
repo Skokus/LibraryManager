@@ -9,6 +9,11 @@ namespace LibraryManager.Infrastructure.Repositories
 {
     public class BookRepository : IBookRepository
     {
+        private AppDbContext _appDbContext;
+        public BookRepository(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
         public Task AddSync(Book b)
         {
             throw new NotImplementedException();

@@ -2,6 +2,7 @@
 using LibraryManager.Core.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,29 +10,81 @@ namespace LibraryManager.Infrastructure.Repositories
 {
     public class AuthorRepository : IAuthorRepository
     {
-        public Task AddSync(Author a)
+        private AppDbContext _appDbContext;
+        public AuthorRepository(AppDbContext appDbContext)
         {
-            throw new NotImplementedException();
+            _appDbContext = appDbContext;
+        }
+        public async Task AddSync(Author a)
+        {
+            try
+            {
+                _appDbContext.Author.Add(a);
+                _appDbContext.SaveChanges();
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+            }
         }
 
-        public Task<IEnumerable<Author>> BrowseAllAsync()
+        public async Task<IEnumerable<Author>> BrowseAllAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await Task.FromResult(_appDbContext.Author);
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+                return null;
+            }
         }
 
-        public Task DeleteAsync(Author a)
+        public async Task DeleteAsync(Author a)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _appDbContext.Remove(_appDbContext.Author.FirstOrDefault(x => x.Id == a.Id));
+                _appDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+            }
         }
 
-        public Task<Author> GetAsync(int id)
+        public async Task<Author> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _appDbContext.Author.FirstOrDefault(x => x.Id == id);
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+                return null;
+            }
         }
 
-        public Task UpdateAsync(Author a)
+        public async Task UpdateAsync(Author a)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var z = _appDbContext.Author.FirstOrDefault(x => x.Id == a.Id);
+
+                z.Name = a.Name;
+                z.Surname = a.Surname;
+                z.Birthday = a.Birthday;
+                z.Country = a.Country;
+
+                _appDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                await Task.FromException(ex);
+            }
         }
     }
 }

@@ -9,6 +9,11 @@ namespace LibraryManager.Infrastructure.Repositories
 {
     public class FilmStudioRepository : IFilmStudioRepository
     {
+        private AppDbContext _appDbContext;
+        public FilmStudioRepository(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
         public Task AddSync(FilmStudio f)
         {
             throw new NotImplementedException();

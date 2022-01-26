@@ -9,6 +9,11 @@ namespace LibraryManager.Infrastructure.Repositories
 {
     public class MovieRepository : IMovieRepository
     {
+        private AppDbContext _appDbContext;
+        public MovieRepository(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
         public Task AddSync(Movie m)
         {
             throw new NotImplementedException();

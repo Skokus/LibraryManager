@@ -9,6 +9,11 @@ namespace LibraryManager.Infrastructure.Repositories
 {
     public class PublishHouseRepository : IPublishHouseRepository
     {
+        private AppDbContext _appDbContext;
+        public PublishHouseRepository(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
         public Task AddSync(PublishHouse p)
         {
             throw new NotImplementedException();
