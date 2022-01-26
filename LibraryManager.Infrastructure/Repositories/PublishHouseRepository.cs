@@ -46,6 +46,7 @@ namespace LibraryManager.Infrastructure.Repositories
         {
             try
             {
+                _appDbContext.RemoveRange(_appDbContext.Book.Where(x => x.PublishHouse.Id == p.Id));
                 _appDbContext.Remove(_appDbContext.PublishHouse.FirstOrDefault(x => x.Id == p.Id));
                 _appDbContext.SaveChanges();
             }
