@@ -15,7 +15,7 @@ namespace LibraryManager.Infrastructure.Repositories
         {
             _appDbContext = appDbContext;
         }
-        public async Task AddSync(PublishHouse p)
+        public async Task AddAsync(PublishHouse p)
         {
             try
             {

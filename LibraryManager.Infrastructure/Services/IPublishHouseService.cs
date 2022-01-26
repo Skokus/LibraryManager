@@ -9,7 +9,7 @@ namespace LibraryManager.Infrastructure.Services
     public interface IPublishHouseService
     {
         public Task<IEnumerable<PublishHouseDTO>> BrowseAll();
-        public Task DelAsync(int id);
+        public Task DeleteAsync(int id);
         public Task AddAsync(PublishHouseDTO publishHouse);
         public Task<PublishHouseDTO> GetAsync(int id);
         public Task UpdateAsync(PublishHouseDTO publishHouse);

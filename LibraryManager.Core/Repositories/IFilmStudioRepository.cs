@@ -8,7 +8,7 @@ namespace LibraryManager.Core.Repositories
 {
     public interface IFilmStudioRepository
     {
-        Task AddSync(FilmStudio f);
+        Task AddAsync(FilmStudio f);
         Task UpdateAsync(FilmStudio f);
         Task DeleteAsync(FilmStudio f);
         Task<FilmStudio> GetAsync(int id);

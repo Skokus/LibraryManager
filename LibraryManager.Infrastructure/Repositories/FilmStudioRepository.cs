@@ -15,7 +15,7 @@ namespace LibraryManager.Infrastructure.Repositories
         {
             _appDbContext = appDbContext;
         }
-        public async Task AddSync(FilmStudio f)
+        public async Task AddAsync(FilmStudio f)
         {
             try
             {

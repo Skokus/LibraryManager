@@ -9,7 +9,7 @@ namespace LibraryManager.Infrastructure.Services
     public interface IAuthorService
     {
         public Task<IEnumerable<AuthorDTO>> BrowseAll();
-        public Task DelAsync(int id);
+        public Task DeleteAsync(int id);
         public Task AddAsync(AuthorDTO author);
         public Task<AuthorDTO> GetAsync(int id);
         public Task UpdateAsync(AuthorDTO author);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryManager.Core.Domain;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,8 +9,8 @@ namespace LibraryManager.Infrastructure.DTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Author Author { get; set; }
-        public FilmStudio FilmStudio { get; set; }
+        public AuthorDTO Author { get; set; }
+        public FilmStudioDTO FilmStudio { get; set; }
         public int Budget { get; set; }
         public double Length { get; set; }
     }

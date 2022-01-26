@@ -8,7 +8,7 @@ namespace LibraryManager.Core.Repositories
 {
     public interface IAuthorRepository
     {
-        Task AddSync(Author a);
+        Task AddAsync(Author a);
         Task UpdateAsync(Author a);
         Task DeleteAsync(Author a);
         Task<Author> GetAsync(int id);

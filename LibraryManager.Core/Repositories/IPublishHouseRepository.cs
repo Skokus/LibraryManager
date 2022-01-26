@@ -8,7 +8,7 @@ namespace LibraryManager.Core.Repositories
 {
     public interface IPublishHouseRepository
     {
-        Task AddSync(PublishHouse p);
+        Task AddAsync(PublishHouse p);
         Task UpdateAsync(PublishHouse p);
         Task DeleteAsync(PublishHouse p);
         Task<PublishHouse> GetAsync(int id);

@@ -8,7 +8,7 @@ namespace LibraryManager.Core.Repositories
 {
     public interface IBookRepository
     {
-        Task AddSync(Book b);
+        Task AddAsync(Book b);
         Task UpdateAsync(Book b);
         Task DeleteAsync(Book b);
         Task<Book> GetAsync(int id);

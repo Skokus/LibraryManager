@@ -9,9 +9,9 @@ namespace LibraryManager.Infrastructure.Services
     public interface IMovieService
     {
         public Task<IEnumerable<MovieDTO>> BrowseAll();
-        public Task DelAsync(int id);
-        public Task AddAsync(MovieDTO skijumper);
+        public Task DeleteAsync(int id);
+        public Task AddAsync(MovieDTO movie);
         public Task<MovieDTO> GetAsync(int id);
-        public Task UpdateAsync(MovieDTO skijumper);
+        public Task UpdateAsync(MovieDTO movie);
     }
 }

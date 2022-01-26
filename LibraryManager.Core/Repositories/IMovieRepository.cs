@@ -8,7 +8,7 @@ namespace LibraryManager.Core.Repositories
 {
     public interface IMovieRepository
     {
-        Task AddSync(Movie m);
+        Task AddAsync(Movie m);
         Task UpdateAsync(Movie m);
         Task DeleteAsync(Movie m);
         Task<Movie> GetAsync(int id);
