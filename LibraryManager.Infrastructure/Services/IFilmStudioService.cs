@@ -1,4 +1,5 @@
-﻿using LibraryManager.Infrastructure.DTO;
+﻿using LibraryManager.Core.Domain;
+using LibraryManager.Infrastructure.DTO;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -30,8 +30,13 @@ namespace LibraryManager.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<IAuthorService, AuthorService>();
+            
+            services.AddScoped<IFilmStudioRepository, FilmStudioRepository>();
+            services.AddScoped<IFilmStudioService, FilmStudioService>();
+
             services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("LibraryManagerConnectionString")));
