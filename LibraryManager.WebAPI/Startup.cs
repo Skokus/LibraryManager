@@ -40,6 +40,9 @@ namespace LibraryManager.WebAPI
             services.AddScoped<IPublishHouseRepository, PublishHouseRepository>();
             services.AddScoped<IPublishHouseService, PublishHouseService>();
 
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IBookService, BookService>();
+
             services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("LibraryManagerConnectionString")));
