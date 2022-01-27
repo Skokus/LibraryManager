@@ -43,6 +43,9 @@ namespace LibraryManager.WebAPI
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IBookService, BookService>();
 
+            services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IMovieService, MovieService>();
+
             services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(
                     Configuration.GetConnectionString("LibraryManagerConnectionString")));
