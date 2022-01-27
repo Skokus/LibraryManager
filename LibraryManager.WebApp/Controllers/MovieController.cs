@@ -3,18 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LibraryManager.WebApp.Controllers
 {
-    public class BookController : Controller
+    public class MovieController : Controller
     {
         public IConfiguration Configuration;
 
-        public BookController(IConfiguration configuration)
+        public MovieController(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -34,13 +33,13 @@ namespace LibraryManager.WebApp.Controllers
         public async Task<IActionResult> Index()
         {
             string _restpath = GetHostURL().Content + CN();
-            List<BookVM> authorList = new List<BookVM>();
+            List<MovieVM> authorList = new List<MovieVM>();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(_restpath))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    authorList = JsonConvert.DeserializeObject<List<BookVM>>(apiResponse);
+                    authorList = JsonConvert.DeserializeObject<List<MovieVM>>(apiResponse);
                 }
             }
             return View(authorList);
@@ -49,20 +48,20 @@ namespace LibraryManager.WebApp.Controllers
         public async Task<IActionResult> Create()
         {
             string _restpath = GetHostURL().Content;
-            BookVM s = new BookVM();
+            MovieVM s = new MovieVM();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync($"{_restpath}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    s = JsonConvert.DeserializeObject<BookVM>(apiResponse);
+                    s = JsonConvert.DeserializeObject<MovieVM>(apiResponse);
                 }
             }
             return View(s);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(BookVM s)
+        public async Task<IActionResult> Create(MovieVM s)
         {
             string _authorRestpath = GetHostURL().Content + "Author";
             using (var httpClient = new HttpClient())
@@ -74,18 +73,18 @@ namespace LibraryManager.WebApp.Controllers
                 }
             }
 
-            string _publishHouseRestpath = GetHostURL().Content + "PublishHouse";
+            string _publishHouseRestpath = GetHostURL().Content + "FilmStudio";
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync($"{_publishHouseRestpath}/{s.PublishHouse.Id}"))
+                using (var response = await httpClient.GetAsync($"{_publishHouseRestpath}/{s.FilmStudio.Id}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    PublishHouseVM yarnType = JsonConvert.DeserializeObject<PublishHouseVM>(apiResponse);
+                    FilmStudioVM yarnType = JsonConvert.DeserializeObject<FilmStudioVM>(apiResponse);
                 }
             }
 
             string _restpath = GetHostURL().Content + CN();
-            BookVM result = new BookVM();
+            MovieVM result = new MovieVM();
             using (var httpClient = new HttpClient())
             {
                 string jsonString = System.Text.Json.JsonSerializer.Serialize(s);
@@ -93,7 +92,7 @@ namespace LibraryManager.WebApp.Controllers
                 using (var response = await httpClient.PostAsync($"{_restpath}", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    s = JsonConvert.DeserializeObject<BookVM>(apiResponse);
+                    s = JsonConvert.DeserializeObject<MovieVM>(apiResponse);
                 }
             }
             return RedirectToAction(nameof(Index));
@@ -102,20 +101,20 @@ namespace LibraryManager.WebApp.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             string _restpath = GetHostURL().Content + CN();
-            BookVM s = new BookVM();
+            MovieVM s = new MovieVM();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync($"{_restpath}/{id}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    s = JsonConvert.DeserializeObject<BookVM>(apiResponse);
+                    s = JsonConvert.DeserializeObject<MovieVM>(apiResponse);
                 }
             }
             return View(s);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(BookVM s)
+        public async Task<IActionResult> Edit(MovieVM s)
         {
             string _authorRestpath = GetHostURL().Content + "Author";
             using (var httpClient = new HttpClient())
@@ -127,18 +126,18 @@ namespace LibraryManager.WebApp.Controllers
                 }
             }
 
-            string _publishHouseRestpath = GetHostURL().Content + "PublishHouseVM";
+            string _publishHouseRestpath = GetHostURL().Content + "FilmStudio";
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync($"{_publishHouseRestpath}/{s.PublishHouse.Id}"))
+                using (var response = await httpClient.GetAsync($"{_publishHouseRestpath}/{s.FilmStudio.Id}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    PublishHouseVM yarnType = JsonConvert.DeserializeObject<PublishHouseVM>(apiResponse);
+                    FilmStudioVM yarnType = JsonConvert.DeserializeObject<FilmStudioVM>(apiResponse);
                 }
             }
 
             string _restpath = GetHostURL().Content + CN();
-            BookVM result = new BookVM();
+            MovieVM result = new MovieVM();
             using (var httpClient = new HttpClient())
             {
                 string jsonString = System.Text.Json.JsonSerializer.Serialize(s);
@@ -146,7 +145,7 @@ namespace LibraryManager.WebApp.Controllers
                 using (var response = await httpClient.PutAsync($"{_restpath}/{s.Id}", content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    s = JsonConvert.DeserializeObject<BookVM>(apiResponse);
+                    s = JsonConvert.DeserializeObject<MovieVM>(apiResponse);
                 }
             }
             return RedirectToAction(nameof(Index));
@@ -156,20 +155,20 @@ namespace LibraryManager.WebApp.Controllers
         {
 
             string _restpath = GetHostURL().Content + CN();
-            BookVM s = new BookVM();
+            MovieVM s = new MovieVM();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync($"{_restpath}/{id}"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    s = JsonConvert.DeserializeObject<BookVM>(apiResponse);
+                    s = JsonConvert.DeserializeObject<MovieVM>(apiResponse);
                 }
             }
             return View(s);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(BookVM s)
+        public async Task<IActionResult> Delete(MovieVM s)
         {
             string _restpath = GetHostURL().Content + CN();
 
