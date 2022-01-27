@@ -66,14 +66,14 @@ namespace LibraryManager.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult> GetAuthor(int id)
+        public async Task<ActionResult> GetBook(int id)
         {
             var z = await _bookService.GetAsync(id);
             return Json(z);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditAuthor([FromBody] Book book, int id)
+        public async Task<IActionResult> EditBook([FromBody] Book book, int id)
         {
             BookDTO bookDTO = new BookDTO()
             {
@@ -89,7 +89,7 @@ namespace LibraryManager.WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAuthor(int id)
+        public async Task<IActionResult> DeleteBook(int id)
         {
             await _bookService.DeleteAsync(id);
             return NoContent();

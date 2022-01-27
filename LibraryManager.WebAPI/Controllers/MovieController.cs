@@ -65,7 +65,7 @@ namespace LibraryManager.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddBook([FromBody] Movie movie)
+        public async Task<ActionResult> AddMovie([FromBody] Movie movie)
         {
             MovieDTO movieDTO = new MovieDTO()
             {
@@ -88,14 +88,14 @@ namespace LibraryManager.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult> GetAuthor(int id)
+        public async Task<ActionResult> GetMovie(int id)
         {
             var z = await _movieService.GetAsync(id);
             return Json(z);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditAuthor([FromBody] Movie movie, int id)
+        public async Task<IActionResult> EditMovie([FromBody] Movie movie, int id)
         {
             MovieDTO movieDTO = new MovieDTO()
             {
@@ -111,7 +111,7 @@ namespace LibraryManager.WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAuthor(int id)
+        public async Task<IActionResult> DeleteMovie(int id)
         {
             await _movieService.DeleteAsync(id);
             return NoContent();

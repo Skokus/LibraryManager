@@ -26,14 +26,14 @@ namespace LibraryManager.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult> GetAuthor(int id)
+        public async Task<ActionResult> GetPublishHouse(int id)
         {
             var z = await _publishHouseService.GetAsync(id);
             return Json(z);
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddAuthor([FromBody] PublishHouse filmStudio)
+        public async Task<ActionResult> AddPublishHouse([FromBody] PublishHouse filmStudio)
         {
             PublishHouseDTO filmStudioDTO = new PublishHouseDTO()
             {
@@ -47,7 +47,7 @@ namespace LibraryManager.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditAuthor([FromBody] PublishHouse filmStudio, int id)
+        public async Task<IActionResult> EditPublishHouse([FromBody] PublishHouse filmStudio, int id)
         {
             PublishHouseDTO filmStudioDTO = new PublishHouseDTO()
             {
@@ -61,7 +61,7 @@ namespace LibraryManager.WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAuthor(int id)
+        public async Task<IActionResult> DeletePublishHouse(int id)
         {
             await _publishHouseService.DeleteAsync(id);
             return NoContent();
