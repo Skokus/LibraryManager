@@ -33,30 +33,30 @@ namespace LibraryManager.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddPublishHouse([FromBody] PublishHouse filmStudio)
+        public async Task<ActionResult> AddPublishHouse([FromBody] PublishHouse publishHouse)
         {
-            PublishHouseDTO filmStudioDTO = new PublishHouseDTO()
+            PublishHouseDTO publishHouseDTO = new PublishHouseDTO()
             {
-                Id = filmStudio.Id,
-                Country = filmStudio.Country,
-                EstablishDay = filmStudio.EstablishDay,
-                Name = filmStudio.Name
+                Id = publishHouse.Id,
+                Country = publishHouse.Country,
+                EstablishDay = publishHouse.EstablishDay,
+                Name = publishHouse.Name
             };
-            await _publishHouseService.AddAsync(filmStudioDTO);
+            await _publishHouseService.AddAsync(publishHouseDTO);
             return NoContent();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditPublishHouse([FromBody] PublishHouse filmStudio, int id)
+        public async Task<IActionResult> EditPublishHouse([FromBody] PublishHouse publishHouse, int id)
         {
-            PublishHouseDTO filmStudioDTO = new PublishHouseDTO()
+            PublishHouseDTO publishHouseDTO = new PublishHouseDTO()
             {
                 Id = id,
-                Country = filmStudio.Country,
-                EstablishDay = filmStudio.EstablishDay,
-                Name = filmStudio.Name
+                Country = publishHouse.Country,
+                EstablishDay = publishHouse.EstablishDay,
+                Name = publishHouse.Name
             };
-            await _publishHouseService.UpdateAsync(filmStudioDTO);
+            await _publishHouseService.UpdateAsync(publishHouseDTO);
             return NoContent();
         }
 
