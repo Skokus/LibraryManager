@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Core", "LibraryManager.Core\LibraryManager.Core.csproj", "{B5614ABC-D039-40B0-A371-B0C7A2104145}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.Core", "LibraryManager.Core\LibraryManager.Core.csproj", "{B5614ABC-D039-40B0-A371-B0C7A2104145}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Infrastructure", "LibraryManager.Infrastructure\LibraryManager.Infrastructure.csproj", "{4FA715C5-3949-4365-BC26-2CE06EB8E8D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.Infrastructure", "LibraryManager.Infrastructure\LibraryManager.Infrastructure.csproj", "{4FA715C5-3949-4365-BC26-2CE06EB8E8D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.WebAPI", "LibraryManager.WebAPI\LibraryManager.WebAPI.csproj", "{2A227E15-0E01-435F-8AD4-DFB9D34853BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager.WebAPI", "LibraryManager.WebAPI\LibraryManager.WebAPI.csproj", "{2A227E15-0E01-435F-8AD4-DFB9D34853BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.WebApp", "LibraryManager.WebApp\LibraryManager.WebApp.csproj", "{F9010C4C-8070-4B1D-8839-9BBDBA9E5B34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B5614ABC-D039-40B0-A371-B0C7A2104145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -58,5 +57,23 @@ Global
 		{2A227E15-0E01-435F-8AD4-DFB9D34853BC}.Release|x64.Build.0 = Release|Any CPU
 		{2A227E15-0E01-435F-8AD4-DFB9D34853BC}.Release|x86.ActiveCfg = Release|Any CPU
 		{2A227E15-0E01-435F-8AD4-DFB9D34853BC}.Release|x86.Build.0 = Release|Any CPU
+		{F9010C4C-8070-4B1D-8839-9BBDBA9E5B34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9010C4C-8070-4B1D-8839-9BBDBA9E5B34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9010C4C-8070-4B1D-8839-9BBDBA9E5B34}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F9010C4C-8070-4B1D-8839-9BBDBA9E5B34}.Debug|x64.Build.0 = Debug|Any CPU
+		{F9010C4C-8070-4B1D-8839-9BBDBA9E5B34}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F9010C4C-8070-4B1D-8839-9BBDBA9E5B34}.Debug|x86.Build.0 = Debug|Any CPU
+		{F9010C4C-8070-4B1D-8839-9BBDBA9E5B34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9010C4C-8070-4B1D-8839-9BBDBA9E5B34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9010C4C-8070-4B1D-8839-9BBDBA9E5B34}.Release|x64.ActiveCfg = Release|Any CPU
+		{F9010C4C-8070-4B1D-8839-9BBDBA9E5B34}.Release|x64.Build.0 = Release|Any CPU
+		{F9010C4C-8070-4B1D-8839-9BBDBA9E5B34}.Release|x86.ActiveCfg = Release|Any CPU
+		{F9010C4C-8070-4B1D-8839-9BBDBA9E5B34}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {38AB36EF-A9DB-4FDC-9099-583CDDEB1716}
 	EndGlobalSection
 EndGlobal

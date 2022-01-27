@@ -46,6 +46,7 @@ namespace LibraryManager.Infrastructure.Repositories
         {
             try
             {
+                _appDbContext.RemoveRange(_appDbContext.Movie.Where(x => x.FilmStudio.Id == f.Id));
                 _appDbContext.Remove(_appDbContext.FilmStudio.FirstOrDefault(x => x.Id == f.Id));
                 _appDbContext.SaveChanges();
             }
